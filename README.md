@@ -1,1 +1,25 @@
-# ultra-game-api
+## How to run it
+
+#### On the machine
+
+To run the application on the machine use the following command:
+
+    cd game-api && npm run build && npm run start:prod
+
+This will start a process running on http://localhost:3000
+
+#### In a Docker container (docker-compose required)
+
+To run the application inside a docker container use the following command:
+
+    cd game-api && npm run build && cd .. && docker-compose up --build
+
+This will start a process running on http://localhost:3000
+
+## Database
+
+No database has been used. All the datas are stored inside the Node process and are located inside `game-api/src/data-mock`.
+
+## Data model
+
+To respect the data model given the a primary/foreign key structured has been simulated by adding an id field randomly generated using the [UUID](https://www.npmjs.com/package/uuid) library to both games and publishers.
