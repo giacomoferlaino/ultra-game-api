@@ -4,7 +4,7 @@ import { publishers } from 'src/data-mock/publishers';
 
 @Injectable()
 export class PublisherService {
-  private _publishers: Publisher[] = publishers;
+  private _publishers: Publisher[] = [...publishers];
 
   async findById(id: string): Promise<Publisher> {
     for (const publisher of this._publishers) {
