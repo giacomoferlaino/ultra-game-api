@@ -9,7 +9,6 @@ export class GameListingManager {
 
   toBeDeleted(game: Game): boolean {
     const monthsAgo: number = DateCalculator.monthsSince(game.releaseDate);
-    console.log(monthsAgo);
     return monthsAgo > this.deleteOlderThanMonths;
   }
 
