@@ -1,13 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { Game } from 'src/models/game';
 import { games } from 'src/data-mock/games';
+import { GameListingManager } from 'src/models/game-listing-manager';
 
 @Injectable()
 export class GameService {
   private _games: Game[] = [...games];
+  private gameListingManager: GameListingManager;
+
+  constructor() {
+    this.gameListingManager = new GameListingManager(18, 12);
+  }
 
   get games(): Game[] {
-    return this._games;
+    return [...this._games];
   }
 
   async findAll(): Promise<Game[]> {
@@ -46,5 +52,22 @@ export class GameService {
         return game;
       }
     }
+  }
+
+  async updateListing(discountPercentage: number): Promise<Game[]> {
+    const updatedListing: Game[] = [];
+    for (const game of this._games) {
+      if (this.gameListingManager.toBeDiscounted(game)) {
+        const discountedGame: Game = this.gameListingManager.applyDiscount(
+          game,
+          discountPercentage,
+        );
+        updatedListing.push(discountedGame);
+      } else if (!this.gameListingManager.toBeDeleted(game)) {
+        updatedListing.push(game);
+      }
+    }
+    this._games = updatedListing;
+    return this._games;
   }
 }

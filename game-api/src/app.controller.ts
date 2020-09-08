@@ -25,6 +25,11 @@ export class AppController {
     return await this._gameService.findAll();
   }
 
+  @Get('update-listing')
+  async updateListing(): Promise<Game[]> {
+    return await this._gameService.updateListing(20);
+  }
+
   @Get(':id')
   async findById(@Param('id') id: string): Promise<Game> {
     return await this._gameService.findById(id);

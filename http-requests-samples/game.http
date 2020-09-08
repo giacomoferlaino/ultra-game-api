@@ -10,6 +10,10 @@ GET http://localhost:3000/game/54b5da69-68d4-4a2e-809f-6a9729139d9f/publisher HT
 
 ###
 
+GET http://localhost:3000/game/update-listing HTTP/1.1
+
+###
+
 POST http://localhost:3000/game HTTP/1.1
 Content-Type: application/json
 
