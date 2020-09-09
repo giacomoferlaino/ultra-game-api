@@ -23,3 +23,11 @@ No database has been used. All the datas are stored inside the Node process and 
 ## Data model
 
 To respect the data model given the a primary/foreign key structured has been simulated by adding an id field randomly generated using the [UUID](https://www.npmjs.com/package/uuid) library to both games and publishers.
+
+## HTTP Request samples
+
+Examples of API requests can be found inside the folder: `http-requests-samples`.
+
+Inside the `game.http` file are present samples related to all the possible endpoints for the /game API route.
+
+**IMPORTANT**: calls containing the element ID have to be modified every time the server starts because of the randomly generated IDs.
