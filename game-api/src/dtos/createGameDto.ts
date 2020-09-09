@@ -3,5 +3,5 @@ export class CreateGameDto {
   price: number;
   publisherId: string;
   tags: string[];
-  releaseDate: Date;
+  releaseDate: string;
 }

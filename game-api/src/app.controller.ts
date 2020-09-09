@@ -48,7 +48,7 @@ export class AppController {
       createGameDto.price,
       createGameDto.publisherId,
       createGameDto.tags,
-      createGameDto.releaseDate,
+      this.parseDate(createGameDto.releaseDate),
     );
     await this._gameService.add(newGame);
     return newGame;
@@ -61,7 +61,7 @@ export class AppController {
       createGameDto.price,
       createGameDto.publisherId,
       createGameDto.tags,
-      createGameDto.releaseDate,
+      this.parseDate(createGameDto.releaseDate),
     );
     return await this._gameService.update(id, newGame);
   }
@@ -69,5 +69,10 @@ export class AppController {
   @Delete(':id')
   async removeById(@Param('id') id: string): Promise<Game> {
     return await this._gameService.removeById(id);
+  }
+
+  private parseDate(date: string): Date {
+    const parsedDate: number = Date.parse(date);
+    return parsedDate ? new Date(parsedDate) : new Date();
   }
 }
