@@ -1,4 +1,4 @@
-import { Game } from './game';
+import { Game } from '../game';
 
 describe('class: Game', () => {
   describe('method: create', () => {

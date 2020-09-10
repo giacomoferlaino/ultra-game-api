@@ -7,11 +7,11 @@ import {
   Body,
   Patch,
 } from '@nestjs/common';
-import { GameService } from './services/game.service';
-import { Game } from './models/game';
-import { CreateGameDto } from './dtos/createGameDto';
-import { PublisherService } from './services/publisher.service';
-import { Publisher } from './models/publisher';
+import { GameService } from '../services/game.service';
+import { Game } from '../models/game';
+import { CreateGameDto } from '../dtos/createGameDto';
+import { PublisherService } from '../services/publisher.service';
+import { Publisher } from '../models/publisher';
 
 @Controller('game')
 export class AppController {

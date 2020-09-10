@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
-import { GameService } from './services/game.service';
-import { PublisherService } from './services/publisher.service';
-import { games, assassinsCreed } from './data-mock/games';
-import { ubisoft } from './data-mock/publishers';
-import { Game } from './models/game';
-import { CreateGameDto } from './dtos/createGameDto';
+import { AppController } from '../app.controller';
+import { GameService } from '../../services/game.service';
+import { PublisherService } from '../../services/publisher.service';
+import { games, assassinsCreed } from '../../data-mock/games';
+import { ubisoft } from '../../data-mock/publishers';
+import { Game } from '../../models/game';
+import { CreateGameDto } from '../../dtos/createGameDto';
 
 describe('class: AppController', () => {
   let appController: AppController;
@@ -61,16 +61,22 @@ describe('class: AppController', () => {
   describe('method: update', () => {
     let createGameDto: CreateGameDto;
     let expectedGame: Game;
+    let releaseDate: Date;
 
     beforeEach(() => {
+      releaseDate = new Date();
       createGameDto = {
         title: 'newTitle',
         price: 25.99,
         tags: ['newTag'],
         publisherId: ubisoft.id,
-        releaseDate: new Date(),
+        releaseDate: releaseDate.toString(),
       };
-      expectedGame = { ...assassinsCreed, ...createGameDto } as Game;
+      expectedGame = {
+        ...assassinsCreed,
+        ...createGameDto,
+        releaseDate: releaseDate,
+      } as Game;
       jest.spyOn(gameService, 'update').mockResolvedValue(expectedGame);
     });
 

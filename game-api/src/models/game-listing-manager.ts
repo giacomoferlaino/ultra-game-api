@@ -1,22 +1,27 @@
 import { Game } from './game';
-import { DateCalculator } from './date-calculator';
+import { DateBuilder, DateHelpers } from '@giacomoferlaino/date-time-utils';
 
 export class GameListingManager {
-  constructor(
-    private readonly deleteOlderThanMonths: number,
-    private readonly discountOlderThenMonths: number,
-  ) {}
+  private deletionDate: Date;
+  private discountingDate: Date;
+
+  constructor(deleteOlderThanMonths: number, discountOlderThenMonths: number) {
+    this.deletionDate = DateBuilder.now()
+      .subtractMonths(deleteOlderThanMonths)
+      .getDate();
+    this.discountingDate = DateBuilder.now()
+      .subtractMonths(discountOlderThenMonths)
+      .getDate();
+  }
 
   toBeDeleted(game: Game): boolean {
-    const monthsAgo: number = DateCalculator.monthsSince(game.releaseDate);
-    return monthsAgo > this.deleteOlderThanMonths;
+    return DateHelpers.isBefore(game.releaseDate, this.deletionDate);
   }
 
   toBeDiscounted(game: Game): boolean {
-    const monthsAgo: number = DateCalculator.monthsSince(game.releaseDate);
     return (
-      monthsAgo < this.deleteOlderThanMonths &&
-      monthsAgo > this.discountOlderThenMonths
+      DateHelpers.isAfter(game.releaseDate, this.deletionDate) &&
+      DateHelpers.isBefore(game.releaseDate, this.discountingDate)
     );
   }
 

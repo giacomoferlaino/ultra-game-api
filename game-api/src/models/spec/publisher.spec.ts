@@ -1,4 +1,4 @@
-import { Publisher } from './publisher';
+import { Publisher } from '../publisher';
 
 describe('class: Publisher', () => {
   describe('method: create', () => {
