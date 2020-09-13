@@ -31,3 +31,10 @@ Examples of API requests can be found inside the folder: `http-requests-samples`
 Inside the `game.http` file are present samples related to all the possible endpoints for the /game API route.
 
 **IMPORTANT**: calls containing the element ID have to be modified every time the server starts because of the randomly generated IDs.
+
+## Dependencies
+
+Except for [nestjs](https://www.npmjs.com/package/@nestjs/core) the project uses two other dependencies:
+
+- [uuid](https://www.npmjs.com/package/uuid): used to generate random and unique IDs.
+- [@giacomoferlaino/date-time-utils](https://www.npmjs.com/package/@giacomoferlaino/date-time-utils): package created to make date creation and comparisons easier.
